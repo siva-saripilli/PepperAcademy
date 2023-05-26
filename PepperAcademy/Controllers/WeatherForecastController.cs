@@ -35,7 +35,7 @@ namespace PepperAcademy.Controllers
         public async Task<IEnumerable<string>> PostAsync(string studentName, string course, string level, string interest)
         {
             // Set your OpenAI API credentials
-            string apiKey = "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";
+            string apiKey = "API KEY";
             string modelId = "gpt-3.5-turbo";
 
             // Set the prompt for the conversation
