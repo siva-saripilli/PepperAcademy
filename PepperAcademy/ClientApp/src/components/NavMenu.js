@@ -26,7 +26,7 @@ export class NavMenu extends Component {
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
           <div className="logo">
-             <img src="cat logo.jpeg" alt="Cat Logo" width="100" />
+             <img src="cat_logo.png" alt="Cat Logo" width="100" />
           </div>
           <NavbarBrand tag={Link} to="/">Pepper's Academy</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
