@@ -1,26 +1,111 @@
-import React, { Component } from 'react';
+import React, { useState, Component } from 'react';
+import './Home.css';
 
 export class Home extends Component {
-  static displayName = Home.name;
+    static displayName = Home.name;
 
-  render() {
+    state = {
+        studentName: '',
+        course: '',
+        level: '',
+        interest: '',
+        formError: false,
+    };
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        // Basic form validation
+        const { studentName, course, level, interest } = this.state;
+        if (studentName.trim() === '' || course === '' || level === '' || interest.trim() === '') {
+            this.setState({ formError: true });
+        } else {
+            // Form is valid, make API call or perform other actions
+            this.setState({ formError: false });
+
+            // Prepare the data for the API call
+            const formData = {
+                studentName,
+                course,
+                level,
+                interest,
+            };
+
+            // Make the API call
+            fetch('https://dummyjson.com/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(
+                    {
+
+                        username: 'kminchelle',
+                        password: '0lelplR',
+                        // expiresInMins: 60, // optional
+                    }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the API response
+                    console.log(data);
+
+                    // Reset the form after successful submission
+                    this.setState({
+                        studentName: '',
+                        course: '',
+                        level: '',
+                        interest: '',
+                    });
+                })
+                .catch(error => {
+                    // Handle the API error
+                    console.error(error);
+                });
+        }
+    };
+
+    handleChange = (event) => {
+        this.setState({ [event.target.id]: event.target.value });
+    };
+
+
+    render() {
+        const { studentName, course, level, interest, formError } = this.state;
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
-    );
+        <div className="main">
+            <h1>Hello, folks!</h1>
+            <p>Welcome to Pepper's Academy</p>
+            <div className="form-container">
+                <form target="_blank" onSubmit={this.handleSubmit}>
+                    <label>Student</label><br></br>
+                    <input type="text" id="studentName" value={studentName} onChange={this.handleChange} ></input><br></br>
+                    <label>Course</label><br></br>
+                    <select id="course" value={course} onChange={this.handleChange}>
+                        <option value="">Select Course</option>
+                        <option value="Maths">Maths</option>
+                        <option value="English">English</option>
+                        <option value="Physics">Physics</option>
+                    </select>
+                    <br></br>
+                    <label>Level</label> <br></br>
+                    <select id="level" value={level} onChange={this.handleChange}>
+                        <option value="">Select Level</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                    <br></br>
+                    <label>Interest</label><br></br>
+                    <input type="text" id="interest" value={interest} onChange={this.handleChange}></input><br></br>
+                    <div className="submitBtn">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>
+                {formError && <p className="error-message">Please fill in all the fields.</p>}
+            </div>
+        </div>
+      ); 
+
   }
 }
