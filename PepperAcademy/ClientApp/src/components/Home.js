@@ -10,6 +10,7 @@ export class Home extends Component {
         level: '',
         interest: '',
         formError: false,
+        response: ''
     };
 
     handleSubmit = (event) => {
@@ -32,23 +33,17 @@ export class Home extends Component {
             };
 
             // Make the API call
-            fetch('https://dummyjson.com/auth/login', {
+            fetch(`https://localhost:44427/weatherforecast?studentName=${studentName}&course=${course}&level=${level}&theme=${interest}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(
-                    {
-
-                        username: 'kminchelle',
-                        password: '0lelplR',
-                        // expiresInMins: 60, // optional
-                    }),
+                }
             })
                 .then(response => response.json())
                 .then(data => {
                     // Handle the API response
                     console.log(data);
+                    this.setState({ response: data });
 
                     // Reset the form after successful submission
                     this.setState({
@@ -71,7 +66,7 @@ export class Home extends Component {
 
 
     render() {
-        const { studentName, course, level, interest, formError } = this.state;
+        const { studentName, course, level, interest, formError, response } = this.state;
     return (
         <div className="main">
             <h1>Hello, folks!</h1>
@@ -103,7 +98,10 @@ export class Home extends Component {
                     </div>
                 </form>
                 {formError && <p className="error-message">Please fill in all the fields.</p>}
+
             </div>
+
+            <p>test:{this.state.response.learningPlan}</p>
         </div>
       ); 
 
