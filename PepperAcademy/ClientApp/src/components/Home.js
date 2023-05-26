@@ -33,7 +33,7 @@ export class Home extends Component {
             };
 
             // Make the API call
-            fetch(`https://localhost:44427/weatherforecast?studentName=${studentName}&course=${course}&level=${level}&theme=${interest}`, {
+            fetch(`https://localhost:44427/gpt?studentName=${studentName}&course=${course}&level=${level}&theme=${interest}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ export class Home extends Component {
 
             </div>
 
-            <p>test:{this.state.response.learningPlan}</p>
+            <p>Customised Learning Plan<br/>{this.state.response.learningPlan}</p>
         </div>
       ); 
 

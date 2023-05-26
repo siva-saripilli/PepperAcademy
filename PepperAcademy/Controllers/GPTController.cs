@@ -5,16 +5,16 @@ namespace PepperAcademy.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class GPTController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<GPTController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public GPTController(ILogger<GPTController> logger)
         {
             _logger = logger;
         }
@@ -40,8 +40,8 @@ namespace PepperAcademy.Controllers
 
 
             // Set the prompt for the conversation
-            string systemPrompt = "You are a " + "10" + " year old " + course + " Teacher";
-            string line1 = "Create a lesson plan for " + "10" + " year olds studying " + course; // + " - " + subject + ".";
+            string systemPrompt = "You are a " + "10" + " year old " + course + " Teacher.";
+            string line1 = "Create a lesson plan for " + "10" + " year olds studying " + course + ".";
             string line2 = "Modify the lesson plan to incorporate a " + theme + " theme.";
             string prompt = line1 + line2;
 
