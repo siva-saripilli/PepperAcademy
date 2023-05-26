@@ -8,7 +8,7 @@ export class Home extends Component {
     return (
         <div className="main">
             <h1>Hello, folks!</h1>
-            <p>Welcome to Pepper Academy</p>
+            <p>Welcome to Pepper's Academy</p>
             <div className="form-container">
                     <form>
                     <label>Student</label><br></br>
