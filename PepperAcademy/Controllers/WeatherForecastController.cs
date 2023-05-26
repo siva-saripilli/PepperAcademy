@@ -32,14 +32,18 @@ namespace PepperAcademy.Controllers
         }
 
         [HttpPost]
-        public async Task<IEnumerable<string>> PostAsync(string studentName, string course, string level, string interest)
+        public async Task<IEnumerable<string>> PostAsync(string studentName="Ben", string course="Math", string level= "Beginner", string theme="Batman") //string subject="2x2 digit multiplication"
         {
             // Set your OpenAI API credentials
-            string apiKey = "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";
+            string apiKey = "";
             string modelId = "gpt-3.5-turbo";
 
+
             // Set the prompt for the conversation
-            string prompt = course + "" +level + "" + interest ;
+            string systemPrompt = "You are a " + "10" + " year old " + course + " Teacher";
+            string line1 = "Create a lesson plan for " + "10" + " year olds studying " + course; // + " - " + subject + ".";
+            string line2 = "Modify the lesson plan to incorporate a " + theme + " theme.";
+            string prompt = line1 + line2;
 
             // Create an HTTP client
             using (var client = new HttpClient())
@@ -55,7 +59,7 @@ namespace PepperAcademy.Controllers
                     model = modelId,
                     messages = new[]
                     {
-                    new { role = "system", content = "You are a helpful assistant." },
+                    new { role = "system", content = systemPrompt },
                     new { role = "user", content = prompt }
                 }
                 };
