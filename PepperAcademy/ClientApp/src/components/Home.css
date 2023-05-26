@@ -15,6 +15,7 @@
     margin-bottom: 5px;
     margin-top: 8px;
     font-weight: bold;
+    text-align: left;
 }
 
 
@@ -31,13 +32,13 @@
     background-color: #ffffff;
     margin-top: 8px;
     padding: 30px 80px;
-    text-align: center;
+    text-align: left;
     border-radius: 10px;
-    align-items:center;
+    align-items: flex-start;
 }
 
 .submitBtn {
-    text-align: center;
+    text-align: right;
 }
 
 .submitBtn input[type="submit"] {
@@ -47,7 +48,7 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin: 10px 10px;
+    margin: 10px 0px;
 }
 
 .error-message {
