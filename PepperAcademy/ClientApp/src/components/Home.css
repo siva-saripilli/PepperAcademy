@@ -50,3 +50,6 @@
     margin: 10px 10px;
 }
 
+.error-message {
+    color:red;
+}
