@@ -4,6 +4,10 @@
   word-break: break-all;
 }
 
+header {
+    background-color: #4287f5;
+}
+
 html {
   font-size: 14px;
 }
