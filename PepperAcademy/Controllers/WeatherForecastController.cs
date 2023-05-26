@@ -32,7 +32,7 @@ namespace PepperAcademy.Controllers
         }
 
         [HttpPost]
-        public async Task<IEnumerable<string>> PostAsync(string studentName, string course, string level, string interest)
+        public async Task<string> PostAsync(string studentName, string course, string level, string interest)
         {
             // Set your OpenAI API credentials
             string apiKey = "API KEY";
@@ -75,7 +75,7 @@ namespace PepperAcademy.Controllers
                 // Display the model's reply
                 Console.WriteLine("Model's reply: " + reply);
 
-                return new List<string>();
+                return reply;
             }
         }
     }
