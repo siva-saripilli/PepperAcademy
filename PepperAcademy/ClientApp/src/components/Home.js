@@ -32,18 +32,11 @@ export class Home extends Component {
             };
 
             // Make the API call
-            fetch('https://dummyjson.com/auth/login', {
+            fetch(`https://localhost:44427/weatherforecast?studentName=${studentName}&course=${course}&level=${level}&theme=${interest}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(
-                    {
-
-                        username: 'kminchelle',
-                        password: '0lelplR',
-                        // expiresInMins: 60, // optional
-                    }),
+                }
             })
                 .then(response => response.json())
                 .then(data => {
