@@ -5,16 +5,16 @@ namespace PepperAcademy.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class GPTController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<GPTController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public GPTController(ILogger<GPTController> logger)
         {
             _logger = logger;
         }
@@ -35,7 +35,7 @@ namespace PepperAcademy.Controllers
         public async Task<GptResponse> PostAsync(string studentName="Ben", string course="Math", string level= "Beginner", string theme="Batman") //string subject="2x2 digit multiplication"
         {
             // Set your OpenAI API credentials
-            string apiKey = "";
+            string apiKey = "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";
             string modelId = "gpt-3.5-turbo";
 
 
