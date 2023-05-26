@@ -32,7 +32,7 @@ namespace PepperAcademy.Controllers
         }
 
         [HttpPost]
-        public async Task<IEnumerable<string>> PostAsync(string studentName="Ben", string course="Math", string level= "Beginner", string theme="Batman") //string subject="2x2 digit multiplication"
+        public async Task<string> PostAsync(string studentName="Ben", string course="Math", string level= "Beginner", string theme="Batman") //string subject="2x2 digit multiplication"
         {
             // Set your OpenAI API credentials
             string apiKey = "";
@@ -79,7 +79,7 @@ namespace PepperAcademy.Controllers
                 // Display the model's reply
                 Console.WriteLine("Model's reply: " + reply);
 
-                return new List<string>();
+                return reply;
             }
         }
     }
