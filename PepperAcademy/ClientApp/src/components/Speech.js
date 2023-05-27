@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import "./Speech.css";
 
 const Speech = () => {
     const {
@@ -16,9 +17,9 @@ const Speech = () => {
     return (
         <div>
             <p>Microphone: {listening ? 'on' : 'off'}</p>
-            <button onClick={SpeechRecognition.startListening}>Start</button>
-            <button onClick={SpeechRecognition.stopListening}>Stop</button>
-            <button onClick={resetTranscript}>Reset</button>
+            <button className="btn" onClick={SpeechRecognition.startListening}>Start</button>
+            <button className="btn"  onClick={SpeechRecognition.stopListening}>Stop</button>
+            <button className="btn"  onClick={resetTranscript}>Reset</button>
             <p>{transcript}</p>
         </div>
     );

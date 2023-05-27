@@ -1,7 +1,6 @@
 import React, { useState, Component } from 'react';
 import './Home.css';
-import Loader from './Loader';
-import './Loader.css';
+import Loader from './Loader';;
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -23,6 +22,7 @@ export class Home extends Component {
         const { studentName, course, level, interest } = this.state;
         if (studentName.trim() === '' || course === '' || level === '' || interest.trim() === '') {
             this.setState({ formError: true });
+            this.showLoader(true);
         } else {
             // Form is valid, make API call or perform other actions
             this.setState({ formError: false, loading: true });
@@ -83,7 +83,8 @@ export class Home extends Component {
             <div className="main">
                 <h1>Hello, folks!</h1>
                 <p>Welcome to Pepper's Academy</p>
-                <div className="form-container" className={loading ? 'hide-when-loading' : ''}>
+                <div className='sub'>
+                {!loading && <div className="form-container">
                     <form target="_blank" onSubmit={this.handleSubmit}>
                         <label>Student</label><br></br>
                         <input type="text" id="studentName" value={studentName} onChange={this.handleChange} ></input><br></br>
@@ -110,15 +111,17 @@ export class Home extends Component {
                         </div>
                     </form>
                     {formError && <p className="error-message">Please fill in all the fields.</p>}
-                </div>
-
-                {/* Button to trigger the loader */}
-                <button onClick={this.showLoader}>Show Loader</button>
+                </div>}
 
                 {/* Display the loader when 'loading' is true */}
                 {loading && <Loader />}
-
-                <p>Customised Learning Plan<br />{response.learningPlan}</p>
+                <br />
+                {response && <div>
+                <h3>Customised Learning Plan </h3>
+                 <p>{response.learningPlan}</p>
+                </div>}
+                
+                </div>
             </div>
         );
     }
