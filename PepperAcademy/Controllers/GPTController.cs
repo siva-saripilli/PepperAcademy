@@ -144,7 +144,7 @@ namespace PepperAcademy.Controllers
 
 
             // Set the prompt for the conversation
-            string userQuestion = $"A student has the following quiz question {question}. Check the students answer = [{studentAnswer}]. If the answer is correct, provide a {theme} themed praise. If incorrect, provide a {theme} themed correction. Format the response in a div tag.";
+            string userQuestion = $"A student has the following quiz question {question}. Check the students answer = [{studentAnswer}]. If the answer is correct, provide a {theme} themed praise or if incorrect, provide a {theme} themed correction. Format the response in a div tag.";
 
             // Create an HTTP client
             using (var client = new HttpClient())
