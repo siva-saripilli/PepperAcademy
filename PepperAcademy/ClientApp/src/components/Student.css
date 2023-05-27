@@ -54,3 +54,13 @@
 .submit-btn:hover {
 background-color: #45a049;
 }
+
+.praise-card {
+    background-color: white;
+    color: #0d6efd;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 16px;
+}
