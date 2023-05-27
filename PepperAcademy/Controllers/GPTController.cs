@@ -90,7 +90,7 @@ namespace PepperAcademy.Controllers
         public async Task<GptResponse> GetQuizQuestion(string course="maths", string level="10", string theme="Batman")
         {
             // Set your OpenAI API credentials
-            string apiKey = "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";
+            string apiKey = "";
             string modelId = "gpt-3.5-turbo";
 
 
