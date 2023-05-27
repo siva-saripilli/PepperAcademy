@@ -45,7 +45,7 @@ export class Counter extends Component {
                               <td>{student.name}</td><td>{student.subject}</td><td>{student.level}</td><td>{student.interest}</td><td>{student.age}</td><td>{student.questions_answered}</td><td>{student.questions_correct}</td><td>{student.questions_incorrect}</td><td>{student.percentage_correct}%</td>
                               <td>
                                   <a
-                                      href={`https://localhost:44427/student?name=${encodeURIComponent(student.name)}&subject=${encodeURIComponent(student.subject)}&interest=${encodeURIComponent(student.interest)}&level=${encodeURIComponent(student.level)}`}
+                                      href={`https://localhost:44427/student?name=${encodeURIComponent(student.name)}&subject=${encodeURIComponent(student.subject)}&interest=${encodeURIComponent(student.interest)}&level=${encodeURIComponent(student.level)}&age=${encodeURIComponent(student.age)}`}
                                   >
                                       View
                                   </a>
