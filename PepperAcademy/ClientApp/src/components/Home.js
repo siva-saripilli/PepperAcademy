@@ -46,6 +46,7 @@ export class Home extends Component {
                 .then(data => {
                     // Handle the API response
                     console.log(data);
+
                     this.setState({ response: data, loading: false });
 
                     // Reset the form after successful submission
@@ -118,7 +119,8 @@ export class Home extends Component {
                 <br />
                 {response && <div>
                 <h3>Customised Learning Plan </h3>
-                 <p>{response.learningPlan}</p>
+                        
+                        <div dangerouslySetInnerHTML={{ __html: response.learningPlan }} />
                 </div>}
                 
                 </div>

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Text;
+using System.Web;
 
 namespace PepperAcademy.Controllers
 {
@@ -44,7 +45,7 @@ namespace PepperAcademy.Controllers
             // Set the prompt for the conversation
             string systemPrompt = "You are a " + "10" + " year old " + course + " Teacher";
             string line1 = "Create a lesson plan for " + "10" + " year olds studying " + course; // + " - " + subject + ".";
-            string line2 = "Modify the lesson plan to incorporate a " + theme + " theme.";
+            string line2 = "Modify the lesson plan to incorporate a " + theme + " theme. Format the response in a div tag.";
             string prompt = line1 + line2;
 
             // Create an HTTP client
@@ -83,7 +84,7 @@ namespace PepperAcademy.Controllers
 
                 return new GptResponse
                 {
-                    LearningPlan = reply
+                    LearningPlan = System.Net.WebUtility.HtmlDecode(reply)
                 };
             }
         }
@@ -136,14 +137,14 @@ namespace PepperAcademy.Controllers
         }
 
         [HttpPost("quizanswer")]
-        public async Task<GptResponse> QuizAnswer(string question, string studentAnswer, string theme = "Batman")
+        public async Task<GptResponse> QuizAnswer(string question, string studentAnswer, string theme = "Batman", bool isLastQuestion = false)
         {
             // Set your OpenAI API credentials
             string modelId = "gpt-3.5-turbo";
 
 
             // Set the prompt for the conversation
-            string userQuestion = $"A student has the following quiz question {question}. Check the students answer {studentAnswer}. If the answer is correct, provide a {theme} themed praise. If incorrect, provide a {theme} themed correction.";
+            string userQuestion = $"A student has the following quiz question {question}. Check the students answer = [{studentAnswer}]. If the answer is correct, provide a {theme} themed praise. If incorrect, provide a {theme} themed correction. Format the response in a div tag.";
 
             // Create an HTTP client
             using (var client = new HttpClient())
