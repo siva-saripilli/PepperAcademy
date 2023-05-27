@@ -1,0 +1,37 @@
+﻿.loader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #3498db;
+    margin-bottom: 10px;
+    animation: dotAnimation 1.5s ease-in-out infinite;
+}
+
+@keyframes dotAnimation {
+    0% {
+        transform: scale(0);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0.3;
+    }
+}
+
+.hide-when-loading {
+    display: none;
+}

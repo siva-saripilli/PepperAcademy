@@ -8,7 +8,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+}
+
+.sub {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-container label {
@@ -31,10 +37,11 @@
 .form-container {
     background-color: #ffffff;
     margin-top: 8px;
+    margin-bottom: 30%;
     padding: 30px 80px;
     text-align: left;
     border-radius: 10px;
-    align-items: flex-start;
+    align-items: flex-sta
 }
 
 .submitBtn {

@@ -28,21 +28,21 @@ export class NavMenu extends Component {
           <div className="logo">
              <img src="cat_logo.png" alt="Cat Logo" width="100" />
           </div>
-          <NavbarBrand tag={Link} to="/">Pepper's Academy</NavbarBrand>
+          <NavbarBrand tag={Link} style={{ color: "white" }} to="/">Pepper's Academy</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
             <ul className="navbar-nav flex-grow">
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
+                <NavLink tag={Link} className="text-white" to="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/counter">Teachers</NavLink>
+                <NavLink tag={Link} className="text-white" to="/counter">Teachers</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/fetch-data">Parents</NavLink>
+                <NavLink tag={Link} className="text-white" to="/fetch-data">Parents</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/student">Students</NavLink>
+                <NavLink tag={Link} className="text-white" to="/student">Students</NavLink>
               </NavItem>
             </ul>
           </Collapse>
