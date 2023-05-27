@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
 using System.Text;
 
 namespace PepperAcademy.Controllers
@@ -87,7 +89,7 @@ namespace PepperAcademy.Controllers
         }
 
         [HttpPost("quizquestion")]
-        public async Task<GptResponse> GetQuizQuestion(string course="maths", string level="10", string theme="Batman")
+        public async Task<GptQuestionResponse> GetQuizQuestion(string course="maths", string level="10", string theme="Batman")
         {
             // Set your OpenAI API credentials
             string apiKey = "";
@@ -95,7 +97,7 @@ namespace PepperAcademy.Controllers
 
 
             // Set the prompt for the conversation
-            string systemPrompt = $"Generate a {theme} themed {course} quiz question for a {level} year old";
+            string systemPrompt = $"Generate in JSON formatted 5 {theme} themed {course} quiz questions for a {level} year old without options and answer";
 
             // Create an HTTP client
             using (var client = new HttpClient())
@@ -128,13 +130,8 @@ namespace PepperAcademy.Controllers
                 dynamic responseData = Newtonsoft.Json.JsonConvert.DeserializeObject(responseJson);
                 string reply = responseData.choices[0].message.content;
 
-                // Display the model's reply
-                Console.WriteLine("Model's reply: " + reply);
-
-                return new GptResponse
-                {
-                    LearningPlan = reply
-                };
+                var data = JsonConvert.DeserializeObject<GptQuestionResponse>(reply);
+                return data;
             }
         }
 
@@ -142,7 +139,6 @@ namespace PepperAcademy.Controllers
         public async Task<GptResponse> QuizAnswer(string question, string studentAnswer, string theme = "Batman")
         {
             // Set your OpenAI API credentials
-            string apiKey = "";
             string modelId = "gpt-3.5-turbo";
 
 
