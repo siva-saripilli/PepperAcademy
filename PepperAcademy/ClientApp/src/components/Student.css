@@ -1,0 +1,53 @@
+﻿.question-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.student-card {
+    width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 16px;
+}
+
+.card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 16px;
+}
+
+.card-header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-question {
+    margin-top: 12px;
+}
+
+.options {
+    margin-top: 12px;
+}
+
+.option {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+background-color: #45a049;
+}
