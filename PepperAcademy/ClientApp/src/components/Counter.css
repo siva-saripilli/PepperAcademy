@@ -1,0 +1,22 @@
+﻿/* styles.css */
+.student-table {
+    width: auto;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+    .student-table th,
+    .student-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .student-table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    .student-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
