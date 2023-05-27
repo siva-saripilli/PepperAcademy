@@ -137,7 +137,7 @@ namespace PepperAcademy.Controllers
         }
 
         [HttpPost("quizanswer")]
-        public async Task<GptResponse> QuizAnswer(string question, string studentAnswer, string theme = "Batman", bool isLastQuestion = false)
+        public async Task<GptAnswerResponse> QuizAnswer(string question, string studentAnswer, string theme = "Batman", bool isLastQuestion = false)
         {
             // Set your OpenAI API credentials
             string modelId = "gpt-3.5-turbo";
@@ -179,9 +179,9 @@ namespace PepperAcademy.Controllers
                 // Display the model's reply
                 Console.WriteLine("Model's reply: " + reply);
 
-                return new GptResponse
+                return new GptAnswerResponse
                 {
-                    LearningPlan = reply
+                    Answer = reply
                 };
             }
         }
