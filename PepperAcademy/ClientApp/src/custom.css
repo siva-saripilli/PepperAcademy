@@ -1,4 +1,9 @@
 /* Provide sufficient contrast against white background */
+
+html {
+    overflow-y: scroll;
+}
+
 a {
   color: #0366d6;
 }
