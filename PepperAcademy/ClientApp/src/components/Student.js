@@ -6,32 +6,44 @@ export class Student extends Component {
   constructor(props) {
     super(props);
       this.state = {
-      questions: [{ id: "1", question: "Hello" }],
+      questions: [],
       answers: {},
+
     };
   }
 
-  //componentDidMount() {
-  //  // Fetch questions from API
-  //    fetch(`https://localhost:44427/gpt/quizquestion?course=${course}&level=${level}&theme=${interest}`, {
-  //        method: 'POST',
-  //        headers: {
-  //            'Content-Type': 'application/json',
-  //        }
-  //    })
-  //        .then((response) => response.json({}))
-  //        .then((data) => {
-  //            const answers = {};
-  //            data.forEach((question) => {
-  //                answers[question.id] = "";
-  //            });
-  //            this.setState({ questions: data, answers: answers });
-  //        })
-  //        .catch(error => {
-  //            // Handle the API error
-  //            console.error(error);
-  //        });
-  //}
+    componentDidMount() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const course = urlParams.get("subject");
+        const interest = urlParams.get("interest");
+        const age = urlParams.get("age");
+
+    // Fetch questions from API
+        fetch(`https://localhost:44427/gpt/quizquestion?course=${course}&level=${age}&theme=${interest}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+          .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                this.setState({ questions: data.quiz, loading: false });
+
+                // Reset the form after successful submission
+                this.setState({
+                    studentName: '',
+                    course: '',
+                    level: '',
+                    interest: '',
+                });
+        
+          })
+          .catch(error => {
+              // Handle the API error
+              console.error(error);
+          });
+  }
 
   handleAnswerChange = (questionId, answer) => {
     this.setState((prevState) => ({
@@ -72,29 +84,29 @@ export class Student extends Component {
             <strong>Age:</strong> {age}
           </p>
         </div>
-        {questions.map((question) => (
-          <div key={question.id} className="card">
-            <div className="card-header">Question {question.id}</div>
+         {questions.length > 0 &&  (
+                <div key={questions[0].id} className="card">
+                    <div className="card-header">Question {questions[0].id}</div>
             <div className="card-body">
-              <p className="card-question">{question.question}</p>
+                        <p className="card-question">{questions[0].question}</p>
               <div className="answer">
                 <input
                   className="input"
                   type="text"
-                  value={answers[question.id]}
+                  value={answers[questions[0].id]}
                   onChange={(e) =>
-                    this.handleAnswerChange(question.id, e.target.value)
+                      this.handleAnswerChange(questions[0].id, e.target.value)
                   }
                   placeholder="Enter your answer"
                 />
                 <div className="submitBtn">
-                  <input type="submit" value="Submit" />
+                  <input type="submit" value="Submit"  />
                 </div>
               </div>
             </div>
           </div>
-        ))}
-        ;
+        )}
+ 
         <div className="voice-to-text">
           <p><b>Use voice to answer</b></p>
           <Speech />
