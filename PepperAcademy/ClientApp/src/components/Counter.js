@@ -36,13 +36,20 @@ export class Counter extends Component {
                 <table className="student-table">
                   <thead>
                       <tr>
-                          <th>Name</th><th>Subject</th><th>Level</th><th>Interest</th><th>Age</th><th>Questions Answered</th><th>Questions Correct</th><th>Questions Incorrect</th><th>Percentage Correct</th>
+                            <th>Name</th><th>Subject</th><th>Level</th><th>Interest</th><th>Age</th><th>Questions Answered</th><th>Questions Correct</th><th>Questions Incorrect</th><th>Percentage Correct</th><th>View</th>
                       </tr>
                   </thead>
                   <tbody>
                       {students.map((student, index) => (
                           <tr key={index}>
                               <td>{student.name}</td><td>{student.subject}</td><td>{student.level}</td><td>{student.interest}</td><td>{student.age}</td><td>{student.questions_answered}</td><td>{student.questions_correct}</td><td>{student.questions_incorrect}</td><td>{student.percentage_correct}%</td>
+                              <td>
+                                  <a
+                                      href={`https://localhost:44427/student?name=${encodeURIComponent(student.name)}&subject=${encodeURIComponent(student.subject)}&interest=${encodeURIComponent(student.interest)}&level=${encodeURIComponent(student.level)}`}
+                                  >
+                                      View
+                                  </a>
+                            </td>
                           </tr>
                       ))}
                   </tbody>
