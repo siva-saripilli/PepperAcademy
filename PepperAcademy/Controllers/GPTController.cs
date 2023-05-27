@@ -35,7 +35,7 @@ namespace PepperAcademy.Controllers
         public async Task<GptResponse> PostAsync(string studentName="Ben", string course="Math", string level= "Beginner", string theme="Batman") //string subject="2x2 digit multiplication"
         {
             // Set your OpenAI API credentials
-            string apiKey = "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";
+            string apiKey = "";
             string modelId = "gpt-3.5-turbo";
 
 
@@ -90,7 +90,7 @@ namespace PepperAcademy.Controllers
         public async Task<GptResponse> GetQuizQuestion(string course="maths", string level="10", string theme="Batman")
         {
             // Set your OpenAI API credentials
-            string apiKey = "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";
+            string apiKey = "";
             string modelId = "gpt-3.5-turbo";
 
 
@@ -113,6 +113,57 @@ namespace PepperAcademy.Controllers
                     {
                     new { role = "system", content = systemPrompt },
                     new { role = "user", content = systemPrompt }
+                }
+                };
+
+                // Convert the payload to JSON
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // Send the API request
+                var response = await client.PostAsync(endpoint, content);
+                var responseJson = await response.Content.ReadAsStringAsync();
+
+                // Parse the response
+                dynamic responseData = Newtonsoft.Json.JsonConvert.DeserializeObject(responseJson);
+                string reply = responseData.choices[0].message.content;
+
+                // Display the model's reply
+                Console.WriteLine("Model's reply: " + reply);
+
+                return new GptResponse
+                {
+                    LearningPlan = reply
+                };
+            }
+        }
+
+        [HttpPost("quizanswer")]
+        public async Task<GptResponse> QuizAnswer(string question, string studentAnswer, string theme = "Batman")
+        {
+            // Set your OpenAI API credentials
+            string apiKey = "";
+            string modelId = "gpt-3.5-turbo";
+
+
+            // Set the prompt for the conversation
+            string userQuestion = $"A student has the following quiz question {question}. Check the students answer {studentAnswer}. If the answer is correct, provide a {theme} themed praise. If incorrect, provide a {theme} themed correction.";
+
+            // Create an HTTP client
+            using (var client = new HttpClient())
+            {
+                // Set the API endpoint and headers
+                string endpoint = $"https://api.openai.com/v1/chat/completions";
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+                //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+
+                // Create the request payload
+                var requestBody = new
+                {
+                    model = modelId,
+                    messages = new[]
+                    {
+                    new { role = "user", content = userQuestion }
                 }
                 };
 
